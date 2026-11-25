@@ -13,6 +13,11 @@ def calc_base_width(height, beta, gamma, step_amount, thickness):
 def calc_step_lengths(height, beta, overlap, step_amount, thickness):
     site = (height / math.sin(math.radians(beta))) * math.sin(math.radians(90))
     # Step a is the top step which overlaps the other top step
+
+    # overlap * (step_amount - 1) #? is calculating the entire overlap
+    # - calc_cutting_length(thickness, beta) / step_amount #? is there because the top step is alwas for the cutting_lenght longer
+    #* Later you can choose between: For cutting_lenght longer / For % longer than the ground steps
+
     length_top_step_A = (site / 3) + ((((overlap * (step_amount - 1)) - calc_cutting_length(thickness, beta)) / 3) + calc_cutting_length(thickness, beta))
     length_top_step_B = (site / 3) + ((((overlap * (step_amount - 1)) - calc_cutting_length(thickness, beta)) / 3))
     ground_step_length = (site / 3) + (((overlap * (step_amount - 1)) - calc_cutting_length(thickness, beta)) / 3)
