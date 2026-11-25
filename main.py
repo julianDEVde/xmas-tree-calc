@@ -18,9 +18,9 @@ def calc_step_lengths(height, beta, overlap, step_amount, thickness):
     # - calc_cutting_length(thickness, beta) / step_amount #? is there because the top step is alwas for the cutting_lenght longer
     #* Later you can choose between: For cutting_lenght longer / For % longer than the ground steps
 
-    length_top_step_A = (site / 3) + ((((overlap * (step_amount - 1)) - calc_cutting_length(thickness, beta)) / 3) + calc_cutting_length(thickness, beta))
-    length_top_step_B = (site / 3) + ((((overlap * (step_amount - 1)) - calc_cutting_length(thickness, beta)) / 3))
-    ground_step_length = (site / 3) + (((overlap * (step_amount - 1)) - calc_cutting_length(thickness, beta)) / 3)
+    length_top_step_A = (site / step_amount) + ((((overlap * (step_amount - 1)) - calc_cutting_length(thickness, beta)) / step_amount) + calc_cutting_length(thickness, beta))
+    length_top_step_B = (site / step_amount) + ((((overlap * (step_amount - 1)) - calc_cutting_length(thickness, beta)) / step_amount))
+    ground_step_length = (site / step_amount) + (((overlap * (step_amount - 1)) - calc_cutting_length(thickness, beta)) / step_amount)
     return [length_top_step_A, length_top_step_B, ground_step_length]
 
 # First calc test script with height, step_amount, overlap and thickness input
