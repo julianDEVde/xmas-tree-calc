@@ -18,15 +18,16 @@ def calc_step_lengths(height, beta, overlap, step_amount, thickness, percent):
 
     if percent == 0:
         # overlap * (step_amount - 1) #? is calculating the entire overlap length
-        # - calc_cutting_length(thickness, beta) / step_amount #? is there because the top step is alwas for the cutting_lenght longer
+        # - cutting_length / step_amount #? is there because the top step is alwas for the cutting_lenght longer, but just in the default calculation
+        cutting_length = calc_cutting_length(thickness, beta)
 
-        longer_top_step = (site / step_amount) + ((((overlap * (step_amount - 1)) - calc_cutting_length(thickness, beta)) / step_amount) + calc_cutting_length(thickness, beta))
-        other_steps = (site / step_amount) + (((overlap * (step_amount - 1)) - calc_cutting_length(thickness, beta)) / step_amount)
+        longer_top_step = (site / step_amount) + ((((overlap * (step_amount - 1)) - cutting_length) / step_amount) + cutting_length)
+        other_steps = (site / step_amount) + (((overlap * (step_amount - 1)) - cutting_length) / step_amount)
         return [longer_top_step, other_steps]
     else:
         step = (site + (overlap * (step_amount - 1))) / ((step_amount - 1) * (1 - percent / 100) + 1)
         top_step_a = step
-        top_step_b = step - calc_cutting_length(thickness, beta)
+        top_step_b = step - cutting_length
         bottom_steps = step * (1 - percent / 100)
         return [top_step_a, top_step_b, bottom_steps]
 
