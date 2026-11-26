@@ -24,9 +24,10 @@ def calc_step_lengths(height, beta, overlap, step_amount, thickness, percent):
         other_steps = (site / step_amount) + (((overlap * (step_amount - 1)) - calc_cutting_length(thickness, beta)) / step_amount)
         return [longer_top_step, other_steps]
     else:
-        top_step_a = (site / ((step_amount - 1) * (1 - percent / 100) + 1))
-        top_step_b = top_step_a + calc_cutting_length(thickness, beta)
-        bottom_steps = top_step_a * (1 - percent / 100)
+        step = (site + (overlap * (step_amount - 1))) / ((step_amount - 1) * (1 - percent / 100) + 1)
+        top_step_a = step
+        top_step_b = step - calc_cutting_length(thickness, beta)
+        bottom_steps = step * (1 - percent / 100)
         return [top_step_a, top_step_b, bottom_steps]
 
 # First calc test script with height, step_amount, overlap and thickness input
