@@ -44,6 +44,9 @@ class CTKFrame(ctk.CTkFrame):
         self.percent_input = ctk.CTkEntry(self, placeholder_text="Bigger top step")
         self.percent_input.grid(row=7, column=0, padx=10)
 
+        self.generate_button = ctk.CTkButton(self, text="Generate", command=self.get_input)
+        self.generate_button.grid(row=8, column=0)
+
         # Template pictures
         self.tp_image = ctk.CTkImage(Image.open("assets/td_template_specs.jpg"), size=(821 / 2.5, 1094 / 2.5))
         self.tp_label = ctk.CTkLabel(self, text="", image=self.tp_image)
@@ -59,6 +62,16 @@ class CTKFrame(ctk.CTkFrame):
             self.tp_image_path = "assets/real_tree_template.jpg"
         self.new_td_image = ctk.CTkImage(Image.open(self.tp_image_path), size=(821 / 2.5, 1094 / 2.5))
         self.tp_label.configure(image=self.new_td_image)
+
+    def get_input(self):
+        gamma = self.gamma_input.get()
+        beta = self.beta_input.get()
+        heigth = self.height_input.get()
+        width = self.width_input.get()
+        step_amount = self.step_amount_input.get()
+        overlap = self.overlap_input.get()
+        thickness = self.thickness_input.get()
+        percent = self.percent_input.get()
 
 
 
